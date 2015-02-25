@@ -2,10 +2,6 @@
 
 A prototype for a unified search application across cloud services.
 
-## Usage
-
-FIXME
-
 ## License
 
 Copyright © 2015 FIXME
