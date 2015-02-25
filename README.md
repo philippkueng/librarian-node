@@ -1,6 +1,6 @@
-# librarian
+# librarian (work in progress)
 
-A Clojure library designed to ... well, that part is up to you.
+A prototype for a unified search application across cloud services.
 
 ## Usage
 
