@@ -8,7 +8,8 @@
                  [ring/ring-jetty-adapter "1.2.2"]
                  [ring/ring-core "1.3.1"]
                  [ring/ring-json "0.3.1"]
-                 [clojurewerkz/route-one "1.1.0"]]
+                 [environ "0.5.0"]
+                 [clojurewerkz/route-one "1.1.0"]
   :plugins [[lein-ring "0.8.11"]]
   :ring {:handler librarian.handler/app}
   :main librarian.handler
