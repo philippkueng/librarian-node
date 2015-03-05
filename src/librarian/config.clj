@@ -10,6 +10,6 @@
       ev)))
 (def google
   {:client-id (env :google-client-id "")
-   :secret-id (env :google-secret-id "")
+   :client-secret (env :google-secret-id "")
    :callback  {:domain (env :google-callback-domain "http://localhost:3000")
-               :path   (env :google-callback-path   "/google/callback")}})
+               :path   (env :google-callback-path   "/oauth2callback")}})
