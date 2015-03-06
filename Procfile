@@ -1,1 +1,1 @@
-web: lein ring server-headless
+web: node index.js
