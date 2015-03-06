@@ -7,6 +7,31 @@ var config = require('./config');
 var server = new Hapi.Server();
 server.connection(config.system);
 
+server.register(require('bell'), function (err) {
+
+  server.auth.strategy('google', 'bell', config.google);
+  server.route({
+    method: ['GET', 'POST'], // Must handle both GET and POST
+    path: '/authentication/google',          // The callback endpoint registered with the provider
+    config: {
+      auth: {
+        strategy: 'google',
+        mode: 'try'
+      },
+      handler: function (request, reply) {
+        console.log(request.auth.credentials);
+
+        // Perform any account lookup or registration, setup local session,
+        // and redirect to the application. The third-party credentials are
+        // stored in request.auth.credentials. Any query parameters from
+        // the initial request are passed back via request.auth.credentials.query.
+        return reply.redirect('/hello');
+      }
+    }
+  });
+
+});
+
 // Add the route
 server.route({
     method: 'GET',
