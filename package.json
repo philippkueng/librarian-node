@@ -19,6 +19,7 @@
   "dependencies": {
     "bell": "^2.2.0",
     "hapi": "^8.2.0",
-    "hapi-auth-cookie": "^2.0.0"
+    "hapi-auth-cookie": "^2.0.0",
+    "pg": "^4.3.0"
   }
 }
