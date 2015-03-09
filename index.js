@@ -1,3 +1,5 @@
+"use strict";
+
 var Hapi = require('hapi');
 
 // Loading local dependencies.
@@ -7,7 +9,24 @@ var config = require('./config');
 var server = new Hapi.Server();
 server.connection(config.system);
 
+// Database
+var databasePlugin = {
+  register: require('hapi-node-postgres'),
+  options: {
+    connectionString: "postgres://localhost/librarian",
+    native: false
+  }
+};
+server.register(databasePlugin, function (err) {
+  if (err) {
+    console.log("Failed to load the hapi-node-postgres plugin");
+  }
+});
+
 server.register(require('bell'), function (err) {
+  if (err) {
+    throw err;
+  }
 
   server.auth.strategy('google', 'bell', config.google);
   server.route({
