@@ -51,14 +51,36 @@ server.register(require('bell'), function (err) {
 
 });
 
-// Add the route
-server.route({
-    method: 'GET',
-    path:'/hello', 
-    handler: function (request, reply) {
-       reply('hello world');
-    }
-});
+// Add the routes
+server.route([{
+  method: 'GET',
+  path: '/hello',
+  handler: function (request, reply) {
+    var foobar = {
+      name: "foobar2",
+      age: 11
+    };
+    request.pg.client.query("INSERT INTO clients (data) VALUES ($1)", [foobar], function (err, result) {
+      if (err) {
+        console.error(err);
+      }
+      console.log(result);
+    });
+    reply('hello world');
+  }
+}, {
+  method: 'GET',
+  path: '/foobar',
+  handler: function (request, reply) {
+    request.pg.client.query("SELECT data FROM clients WHERE data @> '{\"age\": 11}'", function (err, result) {
+      if (err) {
+        console.error(err);
+      }
+      console.log(result.rows);
+    });
+    reply('foobar');
+  }
+}]);
 
 // Start the server
 server.start(function () {
