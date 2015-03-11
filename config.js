@@ -1,7 +1,7 @@
 'use strict';
 
 var env = function (preferredValue, defaultValue) {
-  return preferredValue === null ? preferredValue : defaultValue;
+  return preferredValue !== null ? preferredValue : defaultValue;
 };
 
 exports.system = {
