@@ -9,6 +9,8 @@ exports.system = {
   port: env(process.env.PORT, 3000)
 };
 
+exports.cookiePassword = env(process.env.COOKIE_PASSWORD, 'librarian-password');
+
 exports.google = {
   provider: "google",
   password: env(process.env.GOOGLE_COOKIE_PASSWORD, "cookie-encryption-password"),
