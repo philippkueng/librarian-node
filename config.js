@@ -20,4 +20,4 @@ exports.google = {
     access_type: 'offline',
     response_type: 'code'
   }
-}
+};
