@@ -1,5 +1,9 @@
 'use strict';
 
+var env = function (preferredValue, defaultValue) {
+  return preferredValue === null ? preferredValue : defaultValue;
+};
+
 exports.system = {
   host: 'localhost',
   port: process.env.PORT ? process.env.PORT : 3000
