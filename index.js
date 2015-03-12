@@ -23,13 +23,19 @@ server.register(databasePlugin, function (err) {
   }
 });
 
-server.register(require('bell'), function (err) {
+server.register([require('bell'), require('hapi-auth-cookie')], function (err) {
   if (err) {
     throw err;
   }
 
   server.auth.strategy('google', 'bell', config.google);
-  server.route({
+  server.auth.strategy('session', 'cookie', {
+    password: config.cookiePassword,
+    cookie: 'sid-librarian',
+    redirectTo: '/authentication/google',
+    isSecure: false
+  });
+  server.route([{
     method: ['GET', 'POST'], // Must handle both GET and POST
     path: '/authentication/google',          // The callback endpoint registered with the provider
     config: {
@@ -37,18 +43,32 @@ server.register(require('bell'), function (err) {
         strategy: 'google',
         mode: 'try'
       },
+      plugins: {
+        'hapi-auth-cookie': {
+          redirectTo: false
+        }
+      },
       handler: function (request, reply) {
         console.log(request.auth.credentials);
-
+        request.auth.session.set(request.auth.credentials);
         // Perform any account lookup or registration, setup local session,
         // and redirect to the application. The third-party credentials are
         // stored in request.auth.credentials. Any query parameters from
         // the initial request are passed back via request.auth.credentials.query.
-        return reply.redirect('/hello');
+        return reply.redirect('/authenticated');
       }
     }
-  });
-
+  }, {
+    method: ['GET'],
+    path: '/authenticated',
+    config: {
+      auth: 'session',
+      handler: function (request, reply) {
+        console.log(request.auth.credentials);
+        reply('hi there');
+      }
+    }
+  }]);
 });
 
 // Add the routes
