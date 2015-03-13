@@ -68,6 +68,16 @@ server.register([require('bell'), require('hapi-auth-cookie')], function (err) {
         reply('hi there');
       }
     }
+  }, {
+    method: ['GET'],
+    path: '/logout',
+    config: {
+      auth: 'session',
+      handler: function (request, reply) {
+        request.auth.session.clear();
+        return reply.redirect('/');
+      }
+    }
   }]);
 });
 
