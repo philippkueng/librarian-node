@@ -2,6 +2,23 @@
 
 A prototype for a unified search application across cloud services.
 
+## Development
+
+Clone and install all dependencies.
+
+```bash
+git@github.com:philippkueng/librarian.git
+cd librarian/
+npm install
+```
+
+Start the development server.
+
+```bash
+npm install -g nodemon
+npm run-script dev
+```
+
 ## License
 
 Copyright © 2015, Philipp Küng
