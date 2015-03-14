@@ -5,7 +5,7 @@ var env = function (preferredValue, defaultValue) {
 };
 
 exports.system = {
-  host: 'localhost',
+  host: '0.0.0.0',
   port: env(process.env.PORT, 3000)
 };
 
