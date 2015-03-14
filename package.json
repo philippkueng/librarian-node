@@ -18,6 +18,7 @@
   "homepage": "https://github.com/philippkueng/librarian",
   "dependencies": {
     "bell": "^2.2.0",
+    "googleapis": "^2.0.1",
     "hapi": "^8.2.0",
     "hapi-auth-cookie": "^2.0.0",
     "hapi-node-postgres": "^2.1.1",
