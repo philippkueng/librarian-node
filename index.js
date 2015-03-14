@@ -13,7 +13,7 @@ server.connection(config.system);
 var databasePlugin = {
   register: require('hapi-node-postgres'),
   options: {
-    connectionString: "postgres://localhost/librarian",
+    connectionString: config.postgres,
     native: false
   }
 };

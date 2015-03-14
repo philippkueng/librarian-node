@@ -9,6 +9,8 @@ exports.system = {
   port: env(process.env.PORT, 3000)
 };
 
+exports.postgres = env(process.env.DATABASE_URL, "postgres://localhost/librarian");
+
 exports.cookiePassword = env(process.env.COOKIE_PASSWORD, 'librarian-password');
 
 exports.google = {
