@@ -17,7 +17,11 @@ exports.google = {
   clientId: env(process.env.GOOGLE_CLIENT_ID, ""),
   clientSecret: env(process.env.GOOGLE_CLIENT_SECRET, ""),
   isSecure: false,
-  scope: ['https://www.googleapis.com/auth/userinfo.email', 'https://www.googleapis.com/auth/drive.readonly', 'https://www.googleapis.com/auth/calendar.readonly', 'https://www.googleapis.com/auth/gmail.readonly'],
+  scope: [
+    'https://www.googleapis.com/auth/userinfo.email',
+    'https://www.googleapis.com/auth/drive.readonly',
+    'https://www.googleapis.com/auth/calendar.readonly',
+    'https://www.googleapis.com/auth/gmail.readonly'],
   providerParams: {
     access_type: 'offline',
     response_type: 'code'
