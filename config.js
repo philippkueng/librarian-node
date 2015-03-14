@@ -23,7 +23,8 @@ exports.google = {
     'https://www.googleapis.com/auth/calendar.readonly',
     'https://www.googleapis.com/auth/gmail.readonly'],
   providerParams: {
-    access_type: 'offline',
-    response_type: 'code'
+    access_type: "offline",
+    response_type: "code",
+    approval_prompt: "force"
   }
 };
