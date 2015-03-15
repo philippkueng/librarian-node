@@ -4,7 +4,7 @@
   "description": "A prototype for a unified search application across cloud services.",
   "main": "index.js",
   "scripts": {
-    "dev": "env $(cat .env) node_modules/.bin/nodemon index.js"
+    "dev": "env $(cat .env_dev) node_modules/.bin/nodemon index.js"
   },
   "repository": {
     "type": "git",
