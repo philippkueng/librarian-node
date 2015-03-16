@@ -10,6 +10,7 @@ Clone and install all dependencies.
 git@github.com:philippkueng/librarian.git
 cd librarian/
 npm install
+psql -d librarian -f schema.sql
 ```
 
 Start the development server.
