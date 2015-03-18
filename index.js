@@ -51,11 +51,21 @@ server.register([require('bell'), require('hapi-auth-cookie')], function (err) {
       handler: function (request, reply) {
         console.log(request.auth.credentials);
         request.auth.session.set(request.auth.credentials);
+
+        request.pg.client.query("INSERT INTO clients (data) VALUES ($1)", [{
+          google: request.auth.credentials
+        }], function (err, result) {
+          if (err) {
+            throw err;
+          }
+          console.log(result);
+          return reply.redirect('/authenticated');
+        });
+
         // Perform any account lookup or registration, setup local session,
         // and redirect to the application. The third-party credentials are
         // stored in request.auth.credentials. Any query parameters from
         // the initial request are passed back via request.auth.credentials.query.
-        return reply.redirect('/authenticated');
       }
     }
   }, {
