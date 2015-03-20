@@ -1,8 +1,8 @@
 # Roadmap
 
 * [x] Implement 3rd party authentication via bell
-* [ ] Implement sessions
-* [ ] Save credentials into a postgres database
+* [x] Implement sessions
+* [x] Save credentials into a postgres database
 * [ ] Add a stub API for Alfred integration
 
 ## Services
