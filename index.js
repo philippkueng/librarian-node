@@ -120,6 +120,39 @@ server.route([{
     });
     reply('foobar');
   }
+}, {
+  method: 'GET',
+  path: '/postgres',
+  handler: function (request, reply) {
+    var queryObject = {
+      google: {
+        profile: {
+          email: "user@example.org"
+        }
+      }
+    };
+
+    var queryJson = function (obj) {
+      return "'" + JSON.stringify(queryObject).replace(/\"/g, "\\\"") + "'";
+    }
+    console.log(queryJson(queryObject));
+    var query = "SELECT id FROM clients WHERE data @> '{\"google\":{\"profile\":{\"email\":\"user@example.org\"}}}'";
+    var fullQuery = "SELECT id FROM clients WHERE data @> " + queryJson(queryObject);
+
+    console.log(fullQuery);
+
+    request.pg.client.query("SELECT id FROM clients WHERE data @> '{\"google\":{\"profile\":{\"email\":\"user@example.org\"}}}'",
+    // request.pg.client.query(fullQuery,
+      [],
+      function (err, result) {
+        if (err) {
+          throw err;
+        }
+        console.log(result);
+        reply('wohoo');
+        // return reply.redirect('/authenticated');
+      });
+  }
 }]);
 
 // Start the server
