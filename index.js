@@ -133,16 +133,11 @@ server.route([{
     };
 
     var queryJson = function (obj) {
-      return "'" + JSON.stringify(queryObject).replace(/\"/g, "\\\"") + "'";
+      return "'" + JSON.stringify(queryObject) + "'";
     }
-    console.log(queryJson(queryObject));
-    var query = "SELECT id FROM clients WHERE data @> '{\"google\":{\"profile\":{\"email\":\"user@example.org\"}}}'";
+    
     var fullQuery = "SELECT id FROM clients WHERE data @> " + queryJson(queryObject);
-
-    console.log(fullQuery);
-
-    request.pg.client.query("SELECT id FROM clients WHERE data @> '{\"google\":{\"profile\":{\"email\":\"user@example.org\"}}}'",
-    // request.pg.client.query(fullQuery,
+    request.pg.client.query(fullQuery,
       [],
       function (err, result) {
         if (err) {
