@@ -4,6 +4,7 @@ var Hapi = require('hapi');
 
 // Loading local dependencies.
 var config = require('./config');
+var database = require('./lib/database');
 
 // Create a server with a host and port
 var server = new Hapi.Server();
@@ -124,29 +125,13 @@ server.route([{
   method: 'GET',
   path: '/postgres',
   handler: function (request, reply) {
-    var queryObject = {
-      google: {
-        profile: {
-          email: "user@example.org"
-        }
+    database.getUserByGoogleEmail(request.pg.client, "philipp.kueng@gmail.com", function (err, result) {
+      if (err) {
+        throw err;
       }
-    };
-
-    var queryJson = function (obj) {
-      return "'" + JSON.stringify(queryObject) + "'";
-    }
-    
-    var fullQuery = "SELECT id FROM clients WHERE data @> " + queryJson(queryObject);
-    request.pg.client.query(fullQuery,
-      [],
-      function (err, result) {
-        if (err) {
-          throw err;
-        }
-        console.log(result);
-        reply('wohoo');
-        // return reply.redirect('/authenticated');
-      });
+      console.log(result);
+      reply("the answer");
+    });
   }
 }]);
 
