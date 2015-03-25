@@ -18,6 +18,8 @@
   "homepage": "https://github.com/philippkueng/librarian",
   "dependencies": {
     "bell": "^2.2.0",
+    "good": "^5.1.2",
+    "good-console": "^4.1.0",
     "googleapis": "^2.0.1",
     "hapi": "^8.2.0",
     "hapi-auth-cookie": "^2.0.0",
