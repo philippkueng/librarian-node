@@ -10,6 +10,23 @@ var database = require('./lib/database');
 var server = new Hapi.Server();
 server.connection(config.system);
 
+// Logging
+var loggingOptions = {
+    opsInterval: 1000,
+    reporters: [{
+        reporter: require('good-console'),
+        args:[{ log: '*', response: '*', request: '*' }]
+    }]
+};
+server.register({
+    register: require('good'),
+    options: loggingOptions
+}, function (err) {
+    if (err) {
+        console.error(err);
+    }
+});
+
 // Database
 var databasePlugin = {
   register: require('hapi-node-postgres'),
