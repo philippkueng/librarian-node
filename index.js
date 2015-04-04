@@ -112,6 +112,14 @@ server.register([require('bell'), require('hapi-auth-cookie')], function (err) {
 // Add the routes
 server.route([{
   method: 'GET',
+  path: '/{param*}',
+  handler: {
+    directory: {
+      path: 'static'
+    }
+  }
+}, {
+  method: 'GET',
   path: '/hello',
   handler: function (request, reply) {
     var foobar = {
