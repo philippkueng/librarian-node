@@ -15,7 +15,7 @@ var loggingOptions = {
     opsInterval: 1000,
     reporters: [{
         reporter: require('good-console'),
-        args:[{ log: '*', response: '*', request: '*' }]
+        args:[{ log: '*', response: '*', request: '*', error: '*'}]
     }]
 };
 server.register({
