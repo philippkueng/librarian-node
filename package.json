@@ -18,6 +18,7 @@
   "homepage": "https://github.com/philippkueng/librarian",
   "dependencies": {
     "bell": "^2.2.0",
+    "bluebird": "^2.9.24",
     "good": "^5.1.2",
     "good-console": "^4.1.0",
     "googleapis": "^2.0.1",
