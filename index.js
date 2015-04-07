@@ -158,6 +158,18 @@ server.route([{
       reply("the answer");
     });
   }
+}, {
+  method: 'GET',
+  path: '/search',
+  handler: function (request, reply) {
+    reply({result: [{
+      name: "Link 1",
+      url: "http://example.com/1"
+    }, {
+      name: "Link 2",
+      url: "http://example.com/2"
+    }]})
+  }
 }]);
 
 // Start the server
