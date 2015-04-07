@@ -14,17 +14,18 @@ server.connection(config.system);
 var loggingOptions = {
     opsInterval: 1000,
     reporters: [{
-        reporter: require('good-console'),
-        args:[{ log: '*', response: '*', request: '*', error: '*'}]
+      reporter: require('good-console'),
+      args: [{log: '*', response: '*', request: '*', error: '*'}]
     }]
-};
+  };
+
 server.register({
-    register: require('good'),
-    options: loggingOptions
+  register: require('good'),
+  options: loggingOptions
 }, function (err) {
-    if (err) {
-        console.error(err);
-    }
+  if (err) {
+    console.error(err);
+  }
 });
 
 // Database
