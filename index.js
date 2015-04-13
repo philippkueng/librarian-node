@@ -71,15 +71,37 @@ server.register([require('bell'), require('hapi-auth-cookie')], function (err) {
         console.log(request.auth.credentials);
         request.auth.session.set(request.auth.credentials);
 
-        request.pg.client.query("INSERT INTO clients (data) VALUES ($1)", [{
           google: request.auth.credentials
         }], function (err, result) {
           if (err) {
             throw err;
+        // check if the user already exists
+        database.getUserByGoogleEmail(
+          request.pg.client,
+          request.auth.credentials.profile.email,
+          function (err, user) {
+            if (err) {
+              console.error(err);
+            }
+            if (user) {
+              request.log("debug", user);
+              request.auth.session.set(user);
+              reply.redirect('/authenticated');
+            } else {
+              database.insertUserFromGoogle(
+                request.pg.client,
+                request.auth.credentials,
+                function (err, result) {
+                  if (err) {
+                    console.error(err);
+                  }
+                  console.log(result);
+                  reply("foobar");
+                }
+              );
+            }
           }
-          console.log(result);
-          return reply.redirect('/authenticated');
-        });
+        );
 
         // Perform any account lookup or registration, setup local session,
         // and redirect to the application. The third-party credentials are
