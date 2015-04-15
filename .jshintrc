@@ -1,0 +1,9 @@
+{
+  "undef": true,
+  "unused": true,
+  "node": true,
+  "strict": true,
+  "trailing": true,
+  "maxlen": 100,
+  "predef": [ "require", "module", "console", "__dirname", "process", "exports", "return" ]
+}
