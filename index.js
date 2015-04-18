@@ -1,6 +1,7 @@
 "use strict";
 
 var Hapi = require('hapi');
+var Promise = require('bluebird');
 
 // Loading local dependencies.
 var config = require('./config');
